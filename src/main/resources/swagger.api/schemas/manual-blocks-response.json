@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "description": "Collection of Manual Blocks",
+  "properties": {
+    "manualblocks": {
+      "description": "List of Manual Block items",
+      "type": "array",
+      "id": "manualBlock",
+      "items": {
+        "type": "object",
+        "$ref": "manual-block.json"
+      }
+    },
+    "totalRecords": {
+      "type": "integer"
+    }
+  }
+}

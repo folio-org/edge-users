@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "test-user-2",
+      "id": "32a3d286-59f6-4594-ae88-588ad8500b6d",
+      "active": true,
+      "departments": [],
+      "proxyFor": [],
+      "patronGroup": "3684a786-6671-4268-8ed0-9db82ebca60b",
+      "personal": {
+        "lastName": "test",
+        "addresses": []
+      },
+      "createdDate": "2021-11-01T06:31:10.892+00:00",
+      "updatedDate": "2021-11-01T06:31:10.892+00:00",
+      "metadata": {
+        "createdDate": "2021-11-01T06:31:10.877+00:00",
+        "updatedDate": "2021-11-01T06:31:10.877+00:00"
+      }
+    }
+  ],
+  "totalRecords": 1,
+  "resultInfo": {
+    "totalRecords": 1,
+    "facets": [],
+    "diagnostics": []
+  }
+}

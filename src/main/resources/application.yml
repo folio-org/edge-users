@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: edge-users
+  liquibase:
+    enabled: false
+  jackson:
+    default-property-inclusion: NON_NULL
+    deserialization:
+      fail-on-unknown-properties: false
+      accept-single-value-as-array: true
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+management:
+  endpoints:
+    web:
+      base-path: /admin
+
+header:
+  edge:
+    validation:
+      exclude: /admin,/swagger-resources,/v2/api-docs,/swagger-ui,/_/tenant
+  validation:
+    x-okapi-tenant:
+      exclude:
+        base-paths: /admin,/swagger,/v2/api-docs,/swagger-ui,/_/tenant
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+folio:
+  tenant:
+    validation:
+      enabled: false
+
+  system-user:
+    username: dummy # This isn't actually used, but we get dependency injection errors from folio-spring-system-user if we don't have it
+    password: dummy
+  environment: dev # Overridden at runtime in production, but causes folio-spring-system-user DI errors if it's not set
+  client:
+    okapiUrl: http://localhost:9130
+    tls:
+      enabled: false
+  #      trustStorePath: ~/test/test.truststore.bcfks
+  #      trustStorePassword: "SecretPassword"
+  #      trustStoreType: BCFKS
+
+secure_store_props: src/main/resources/ephemeral.properties
+
+logging:
+  config: classpath:log4j2.xml
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL

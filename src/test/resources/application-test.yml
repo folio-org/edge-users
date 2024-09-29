@@ -1,0 +1,15 @@
+secure_store_props: src/test/resources/ephemeral.properties
+okapi_url: http://localhost:9130
+spring:
+  application:
+    name: edge-users
+  liquibase:
+    enabled: false
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+folio:
+  tenant:
+    validation:
+      enabled: false

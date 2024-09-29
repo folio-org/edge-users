@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Manual Block Schema",
+  "description": "Manual Block",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "A UUID identifying this manual block",
+      "type": "string"
+    },
+    "type": {
+      "description": "Manual Block Type",
+      "type": "string"
+    },
+    "desc": {
+      "description": "An explanation of this manual block",
+      "type": "string"
+    },
+
+    "borrowing": {
+      "description": "Block Borrowing",
+      "type": "boolean"
+    },
+    "renewals": {
+      "description": "Block Renewals",
+      "type": "boolean"
+    },
+    "requests": {
+      "description": "Block Requests",
+      "type": "boolean"
+    }
+  }
+}

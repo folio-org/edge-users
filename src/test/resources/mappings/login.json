@@ -1,0 +1,17 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/authn/login"
+      },
+      "response": {
+        "status": 200,
+        "body": "{\n    \"username\": \"test_admin\",\n    \"password\": \"admin\"\n}",
+        "headers": {
+          "x-okapi-token": "token"
+        }
+      }
+    }
+  ]
+}

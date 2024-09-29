@@ -1,0 +1,240 @@
+openapi: 3.0.0
+info:
+  title: Edge Users API
+  version: v1
+
+servers:
+  - url: /users/
+
+paths:
+  /users/users:
+    post:
+      operationId: createUser
+      summary: Create a new user
+      description: Create a new user
+      parameters:
+        - $ref: '#/components/parameters/x-okapi-tenant-header'
+        - $ref: '#/components/parameters/x-okapi-token-header'
+        - $ref: '#/components/parameters/lang'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/userdata.json'
+      responses:
+        '200':
+          description: 'Calls the mod-users POST /users/users API and returns newly created item as-is
+              The example of response: https://github.com/folio-org/mod-users/blob/master/ramls/examples/user.sample'
+          content:
+            application/json:
+              schema:
+                $ref: './schemas/userdata.json'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/notAuthorizedResponse'
+        '500':
+          $ref: '#/components/responses/internalServerErrorResponse'
+    get:
+      operationId: getUsers
+      summary: Retrieve users collection
+      description: Retrieve users collection
+      parameters:
+        - $ref: '#/components/parameters/x-okapi-tenant-header'
+        - $ref: '#/components/parameters/x-okapi-token-header'
+        - $ref: '#/components/parameters/request-query-parameters'
+      responses:
+        '200':
+          description: 'Calls the mod-users GET /users/users API and returns user collection as-is
+                 The example of response: https://github.com/folio-org/mod-users/blob/master/ramls/examples/user_collection.sample'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userResults'
+        '401':
+          $ref: '#/components/responses/notAuthorizedResponse'
+        '500':
+          $ref: '#/components/responses/internalServerErrorResponse'
+
+  /users/user-exists:
+    get:
+      operationId: userExists
+      summary: Returns an indication whether the specified user exists or not
+      description: Returns an indication whether the specified user exists or not
+      parameters:
+        - $ref: '#/components/parameters/x-okapi-tenant-header'
+        - $ref: '#/components/parameters/x-okapi-token-header'
+        - $ref: '#/components/parameters/request-query-parameters'
+      responses:
+        '204':
+          description: 'Calls the mod-user /users API returns lists of users by query
+          and returns an indication whether the specified user exists (204) or does not (404)'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/notAuthorizedResponse'
+        '404':
+          $ref: '#/components/responses/notFoundResponse'
+        '500':
+          $ref: '#/components/responses/internalServerErrorResponse'
+
+  /users/patron-pin:
+    post:
+      operationId: setPin
+      summary: Set the PIN for a user
+      description: Set the PIN for a user
+      parameters:
+        - $ref: '#/components/parameters/x-okapi-tenant-header'
+        - $ref: '#/components/parameters/x-okapi-token-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/patron-pin-with-id.json'
+      responses:
+        '201':
+          description: 'Calls the mod-users POST /users/patron-pin API creates/updates PATRON PIN'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/notAuthorizedResponse'
+        '500':
+          $ref: '#/components/responses/internalServerErrorResponse'
+
+  /users/patron-pin/verify:
+    post:
+      operationId: verifyPin
+      summary: verify patron PIN
+      description: verify the PIN for a user
+      parameters:
+        - $ref: '#/components/parameters/x-okapi-tenant-header'
+        - $ref: '#/components/parameters/x-okapi-token-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/patron-pin-with-id.json'
+      responses:
+        '200':
+          description: 'Calls the mod-users POST /users/patron-pin/verify, if PIN is valid, returns 200'
+        '400':
+          $ref: '#/components/responses/badRequestResponse'
+        '401':
+          $ref: '#/components/responses/notAuthorizedResponse'
+        '422':
+          description: 'When calls the mod-users POST /users/patron-pin/verify and if PIN is invalid'
+        '500':
+          $ref: '#/components/responses/internalServerErrorResponse'
+
+components:
+  parameters:
+    request-query-parameters:
+      name: requestQueryParameters
+      in: query
+      description: Request query parameters(query, limit, offset and etc.) as object.
+      schema:
+        $ref: '#/components/schemas/requestQueryParameters'
+    x-okapi-tenant-header:
+      name: x-okapi-tenant
+      in: header
+      description: x-okapi-tenant header value
+      required: false
+      schema:
+        type: string
+    x-okapi-url-header:
+      name: x-okapi-url
+      in: header
+      description: x-okapi-url header value
+      required: false
+      schema:
+        type: string
+    x-okapi-token-header:
+      name: x-okapi-token
+      in: header
+      description: x-okapi-token header value
+      required: false
+      schema:
+        type: string
+    lang:
+      name: lang
+      in: query
+      description: Requested language
+      required: false
+      example: en
+      schema:
+        pattern: "[a-zA-Z]{2}"
+        default: en
+        type: string
+  responses:
+    badRequestResponse:
+      description: Validation errors
+      content:
+        application/json:
+          example:
+            $ref: ./examples/error/badRequestErrorResponse.json
+          schema:
+            $ref: "#/components/schemas/errorResponse"
+    internalServerErrorResponse:
+      description: When unhandled exception occurred during code execution, e.g. NullPointerException
+      content:
+        application/json:
+          example:
+            $ref: ./examples/error/internalErrorResponse.json
+          schema:
+            $ref: "#/components/schemas/errorResponse"
+    notAuthorizedResponse:
+      description: Not authorized to perform requested action
+      content:
+        application/json:
+          example:
+            $ref: ./examples/error/unauthorizedErrorResponse.json
+          schema:
+            $ref: "#/components/schemas/errorResponse"
+    accessDeniedResponse:
+      description: Access Denied
+      content:
+        application/json:
+          example:
+            $ref: ./examples/error/accessDeniedErrorResponse.json
+          schema:
+            $ref: "#/components/schemas/errorResponse"
+    notFoundResponse:
+      description: Item with a given ID not found
+      content:
+        application/json:
+          example:
+            $ref: examples/error/notFoundErrorResponse.json
+          schema:
+            $ref: "#/components/schemas/errorResponse"
+    unprocessableEntityErrorResponse:
+      description: Item with a given ID not found
+      content:
+        application/json:
+          example:
+            $ref: examples/error/unprocessableEntityErrorResponse.json
+          schema:
+            $ref: "#/components/schemas/errorResponse"
+    notImplementedResponse:
+      description: The server does not support the functionality required to fulfill the request
+      content:
+        application/json:
+          example: "the method that is unavailable"
+          schema:
+            $ref: "#/components/schemas/errorResponse"
+  schemas:
+    errorResponse:
+      $ref: './schemas/error.json#/Error'
+    requestQueryParameters:
+      $ref: './schemas/requestQueryParameters.json#/RequestQueryParameters'    
+    userResults:
+      $ref: './schemas/user-results.json'
+    userGroup:
+      $ref: 'schemas/usergroup.json'
+    manualBlocksResponse:
+      $ref: 'schemas/manual-blocks-response.json'
+    manualBlock:
+      $ref: 'schemas/manual-block.json'
+    automatedPatronBlock:
+      $ref: 'schemas/automated-patron-block.json'
+    automatedPatronBlockResponse:
+      $ref: 'schemas/automated-patron-blocks-response.json'

@@ -1,0 +1,11 @@
+{
+  "automatedPatronBlocks": [
+    {
+      "patronBlockConditionId": "2149fff5-a64c-4943-aa79-bb1d09511382",
+      "blockBorrowing": true,
+      "blockRenewals": true,
+      "blockRequests": true,
+      "message": "Patron has reached maximum allowed number of items charged out"
+    }
+  ]
+}

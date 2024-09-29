@@ -1,0 +1,138 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/users?lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/userdata.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/users?offset=0&query=username%3Dtest%20or%20personal.email%3Dtest%40mail.com&limit=10&lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/all_user_collection.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/users?offset=0&limit=10&lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/all_user_collection.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/users?offset=0&query=username%3Dnouser%20or%20personal.email%3Dtest%40mail.com&limit=10&lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/one_user_collection.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/users?offset=0&query=username%3Dseconduser%20or%20personal.email%3Dtest2%40mail.com&limit=10&lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/second_user_collection.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/users?offset=0&query=username%3Dnouser%20or%20personal.email%3Dnone%40mail.com&limit=10&lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/empty_user_collection.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/patron-pin"
+      },
+      "response": {
+        "status": 201
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/patron-pin/verify",
+        "bodyPatterns": [
+          {
+            "equalToJson": {
+              "id": "1bcca4f8-6502-4659-9ad3-3eb952f663db",
+              "pin": "1234"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/patron-pin/verify",
+        "bodyPatterns": [
+          {
+            "equalToJson": {
+              "id": "1bcca4f8-6502-4659-9ad3-3eb952f663db",
+              "pin": "4321"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 422
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/groups/3684a786-6671-4268-8ed0-9db82ebca60b"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/usergroup.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

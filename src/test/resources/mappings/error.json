@@ -1,0 +1,19 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/users?lang=de",
+        "bodyPatterns" : [ {
+          "equalToJson" : { "customFields" : { }}
+        } ]
+      },
+      "response": {
+        "status": 500,
+        "bodyFileName": "errors/internal_error.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }]
+}

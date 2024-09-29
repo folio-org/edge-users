@@ -1,0 +1,82 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/manualblocks?offset=0&query=userId%3Da528d25c-9150-4a7f-906f-d62758059747&limit=10&lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/manual_blocks_collection.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/manualblocks?offset=0&query=userId%3D32a3d286-59f6-4594-ae88-588ad8500b6d&limit=10&lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/manual_blocks_empty.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/manualblocks?offset=0&query=userId%3D66fe5bd9-1129-4b40-b54d-05b4c358463c&limit=10&lang=en"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/manual_blocks_empty.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/automated-patron-blocks/32a3d286-59f6-4594-ae88-588ad8500b6d"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/automated_patron_blocks_collection.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/automated-patron-blocks/a528d25c-9150-4a7f-906f-d62758059747"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/automated_patron_blocks_empty.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/automated-patron-blocks/66fe5bd9-1129-4b40-b54d-05b4c358463c"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "responses/automated_patron_blocks_empty.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

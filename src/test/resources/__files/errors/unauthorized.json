@@ -1,0 +1,5 @@
+{
+  "code": 401,
+  "errorMessage": "Edge API key not found in the request, while query /users?lang=en"
+}
+

@@ -1,0 +1,27 @@
+{
+  "id": "@artifactId@-@version@",
+  "name": "Retrieve and create users information Edge API",
+  "provides": [],
+  "requires": [
+    {
+      "id": "users",
+      "version": "15.5 16.0"
+    }
+  ],
+  "permissionSets": [],
+  "launchDescriptor": {
+    "dockerImage": "@artifactId@-@version@",
+    "dockerPull": false,
+    "dockerArgs": {
+      "HostConfig": {
+        "Memory": 268435456,
+        "PortBindings": { "8081/tcp": [ { "HostPort": "%p" } ] }
+      }
+    },
+    "env": [
+      { "name": "JAVA_OPTIONS",
+        "value": "-XX:MaxRAMPercentage=66.0"
+      }
+    ]
+  }
+}

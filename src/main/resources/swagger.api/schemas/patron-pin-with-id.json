@@ -1,0 +1,20 @@
+{
+  "title": "Patron Pin Schema",
+  "description": "Patron Pin",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "UUID of the user",
+      "type": "string",
+      "$ref": "./uuid.json"
+    },
+    "pin": {
+      "description": "PIN of the user",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "pin"
+  ]
+}
