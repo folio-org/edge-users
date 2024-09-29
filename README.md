@@ -23,10 +23,6 @@ Institutional users should be granted the following permission in order to use t
 
 * See [edge-common](https://github.com/folio-org/edge-common) for a description of how configuration works.
 
-## Set up opac-yml-utils submodule
-
-To install opac-yml-utils submodule run git command: 'git submodule update --init' or 'git submodule update --remote'
-
 ### TLS Configuration for HTTP Endpoints
 
 To configure Transport Layer Security (TLS) for HTTP endpoints in edge module, the following configuration parameters can be used. These parameters allow you to specify key and keystore details necessary for setting up TLS.
