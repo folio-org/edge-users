@@ -38,6 +38,7 @@
     <tomcat.version>10.1.25</tomcat.version>
     <bouncycastle.jdk18on.version>1.74</bouncycastle.jdk18on.version>
     <jackson.version>2.16.0</jackson.version>
+    <commons-lang3.version>3.17.0</commons-lang3.version>
   </properties>
 
   <dependencies>
