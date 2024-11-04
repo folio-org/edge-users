@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.6</version>
+    <version>3.2.11</version>
     <relativePath />
   </parent>
 
@@ -36,7 +36,7 @@
     <snakeyaml.version>2.0</snakeyaml.version>
     <jknack.handlebars.version>4.3.1</jknack.handlebars.version>
     <tomcat.version>10.1.25</tomcat.version>
-    <bouncycastle.jdk18on.version>1.74</bouncycastle.jdk18on.version>
+    <bouncycastle.jdk18on.version>1.78</bouncycastle.jdk18on.version>
     <jackson.version>2.16.0</jackson.version>
     <commons-lang3.version>3.17.0</commons-lang3.version>
   </properties>
