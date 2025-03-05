@@ -23,7 +23,7 @@ public class UsersController implements UsersApi {
 
   @Override
   public ResponseEntity<Userdata> createUser(String xOkapiTenant, String xOkapiToken, String lang, Userdata userdata) {
-    log.debug("Create user with user data: {}", userdata);
+    log.info("Create user with user data: {}", userdata);
     var createdUser = usersService.createUser(lang, userdata);
     return ResponseEntity.ok(createdUser);
   }
