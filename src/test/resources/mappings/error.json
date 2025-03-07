@@ -5,7 +5,7 @@
         "method": "POST",
         "url": "/users?lang=de",
         "bodyPatterns" : [ {
-          "equalToJson" : { "customFields" : { }}
+          "equalToJson" : { "customFields" : { }, "proxyFor" : [], "departments" :  []}
         } ]
       },
       "response": {
