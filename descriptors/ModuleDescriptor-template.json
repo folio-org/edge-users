@@ -5,7 +5,7 @@
   "requires": [
     {
       "id": "users",
-      "version": "15.5 16.0"
+      "version": "16.0 16.4"
     }
   ],
   "permissionSets": [],
