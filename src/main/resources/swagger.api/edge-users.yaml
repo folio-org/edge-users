@@ -23,8 +23,9 @@ paths:
               $ref: './schemas/userdata.json'
       responses:
         '200':
-          description: 'Calls the mod-users POST /users/users API and returns newly created item as-is
-              The example of response: https://github.com/folio-org/mod-users/blob/master/ramls/examples/user.sample'
+          description: |
+            Calls the mod-users POST /users/users API and returns newly created item as-is. \
+            The example of response: https://github.com/folio-org/mod-users/blob/master/ramls/examples/user.sample
           content:
             application/json:
               schema:
@@ -45,8 +46,9 @@ paths:
         - $ref: '#/components/parameters/request-query-parameters'
       responses:
         '200':
-          description: 'Calls the mod-users GET /users/users API and returns user collection as-is
-                 The example of response: https://github.com/folio-org/mod-users/blob/master/ramls/examples/user_collection.sample'
+          description: |
+            Calls the mod-users GET /users/users API and returns user collection as-is. \
+            The example of response: https://github.com/folio-org/mod-users/blob/master/ramls/examples/user_collection.sample
           content:
             application/json:
               schema:
@@ -67,8 +69,9 @@ paths:
         - $ref: '#/components/parameters/request-query-parameters'
       responses:
         '204':
-          description: 'Calls the mod-user /users API returns lists of users by query
-          and returns an indication whether the specified user exists (204) or does not (404)'
+          description: |
+            Calls the mod-user /users API returns lists of users by query
+            and returns an indication whether the specified user exists (204) or does not (404)
         '400':
           $ref: '#/components/responses/badRequestResponse'
         '401':
