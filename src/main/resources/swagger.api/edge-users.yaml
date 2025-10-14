@@ -107,8 +107,8 @@ paths:
   /users/patron-pin/verify:
     post:
       operationId: verifyPin
-      summary: verify patron PIN
-      description: verify the PIN for a user
+      summary: Verify patron PIN
+      description: Verify the PIN for a user
       parameters:
         - $ref: '#/components/parameters/x-okapi-tenant-header'
         - $ref: '#/components/parameters/x-okapi-token-header'
