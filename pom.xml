@@ -11,7 +11,7 @@
 
   <groupId>org.folio</groupId>
   <artifactId>edge-users</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.2-SNAPSHOT</version>
   <name>edge-users</name>
   <description>Provides an ability to retrieve and create users information from FOLIO</description>
   <packaging>jar</packaging>
@@ -35,7 +35,8 @@
     <httpcomponents.httpcore.version>4.4.16</httpcomponents.httpcore.version>
     <snakeyaml.version>2.0</snakeyaml.version>
     <jknack.handlebars.version>4.3.1</jknack.handlebars.version>
-    <tomcat.version>10.1.25</tomcat.version>
+    <netty.version>4.1.130.Final</netty.version>
+    <tomcat.version>10.1.50</tomcat.version>
     <bouncycastle.jdk18on.version>1.78</bouncycastle.jdk18on.version>
     <jackson.version>2.16.0</jackson.version>
     <commons-lang3.version>3.17.0</commons-lang3.version>
