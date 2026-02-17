@@ -1,3 +1,7 @@
+## v2.1.1 2026-02-17
+
+* [EDGEUSERS-12](https://folio-org.atlassian.net/browse/EDGEUSERS-12) - Sunflower: Release 2.1.1 with Spring Boot 3.4.13 fixing vulns
+
 ## v2.1.0 2025-03-14
 
 * [EDGEUSERS-5](https://folio-org.atlassian.net/browse/EDGEUSERS-5) - Update to edge-users Java 21
