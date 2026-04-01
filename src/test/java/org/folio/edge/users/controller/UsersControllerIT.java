@@ -1,18 +1,13 @@
 package org.folio.edge.users.controller;
 
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.folio.edge.users.BaseIntegrationTests;
-import org.folio.edge.users.TestUtil;
-import org.folio.edge.users.service.UsersService;
 import org.folio.edge.users.TestConstant;
+import org.folio.edge.users.TestUtil;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 class UsersControllerIT extends BaseIntegrationTests {

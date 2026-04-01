@@ -14,9 +14,6 @@ import org.springframework.web.client.HttpStatusCodeException;
 @RestControllerAdvice
 public class UsersErrorHandler {
 
-  private static final String INVALID_PIN_ERROR_MESSAGE = "PIN is invalid";
-  private static final String PATRON_PIN_VERIFY_URI = "patron-pin/verify";
-
   @ExceptionHandler(HttpStatusCodeException.class)
   public ResponseEntity<Error> handleRestClientResponseException(HttpStatusCodeException exception) {
     var properErrorMessage = exception.getResponseBodyAsString();
