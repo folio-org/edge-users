@@ -2,7 +2,8 @@ package org.folio.edge.users.service;
 
 import org.folio.edge.users.client.FeesFinesClient;
 import org.folio.edge.users.client.PatronBlocksClient;
-import org.folio.edge.users.client.UsersClient;
+import org.folio.edge.users.client.UserClient;
+import org.folio.edge.users.service.mapper.RequestQueryParametersMapper;
 import org.folio.users.domain.dto.AutomatedPatronBlock;
 import org.folio.users.domain.dto.ManualBlock;
 import org.folio.users.domain.dto.PatronPinWithId;
@@ -29,22 +30,25 @@ public class UsersService {
   private static final Predicate<ManualBlock> manualRenewalsPredicate = ManualBlock::getRenewals;
   private static final Predicate<ManualBlock> manualRequestsPredicate = ManualBlock::getRequests;
 
-  private final UsersClient usersClient;
+  private final UserClient userClient;
   private final FeesFinesClient feesFinesClient;
   private final PatronBlocksClient patronBlocksClient;
+  private final RequestQueryParametersMapper requestQueryParametersMapper;
 
   public Userdata createUser(String lang, Userdata userdata) {
-    return usersClient.createUser(lang, userdata);
+    return userClient.createUser(lang, userdata);
   }
 
   public boolean usersExistsByQuery(RequestQueryParameters queryParameters) {
-    var users = usersClient.findUsers(queryParameters);
+    var requestQueryParametersMap = requestQueryParametersMapper.toMap(queryParameters);
+    var users = userClient.findUsers(requestQueryParametersMap);
     return users.getTotalRecords() > 0;
   }
 
   public UserResults getUsers(RequestQueryParameters queryParameters) {
     log.debug("Get users with query parameters '{}'", queryParameters);
-    final UserResults userResults = usersClient.findUsers(queryParameters);
+    var requestQueryParametersMap = requestQueryParametersMapper.toMap(queryParameters);
+    final UserResults userResults = userClient.findUsers(requestQueryParametersMap);
     return addAdditionalUserAttributes(userResults);
   }
 
@@ -56,7 +60,7 @@ public class UsersService {
   @Cacheable(value = "usergroup_cache", key = "{ #groupId }")
   public UserGroup getUserGroupById(final String groupId) {
     log.debug("Get user group by id '{}'", groupId);
-    return usersClient.getGroupById(groupId);
+    return userClient.getGroupById(groupId);
   }
 
   private void populateBlockedAttribute(UserResults userResults) {
@@ -85,7 +89,8 @@ public class UsersService {
   private boolean hasManualBlocks(String userId) {
     var requestQueryParameters = new RequestQueryParameters();
     requestQueryParameters.setQuery(String.format("userId=%s", userId));
-    var blocksResponse = feesFinesClient.getManualBlocks(requestQueryParameters);
+    var requestQueryParametersMap = requestQueryParametersMapper.toMap(requestQueryParameters);
+    var blocksResponse = feesFinesClient.getManualBlocks(requestQueryParametersMap);
     var blocks = blocksResponse.getManualblocks();
     return blocks.stream()
         .anyMatch(manualBorrowingPredicate
@@ -103,10 +108,10 @@ public class UsersService {
   }
 
   public void setPin(PatronPinWithId patronPin) {
-    usersClient.setPin(patronPin);
+    userClient.setPin(patronPin);
   }
 
   public void verifyPin(PatronPinWithId patronPin) {
-    usersClient.verifyPin(patronPin);
+    userClient.verifyPin(patronPin);
   }
 }

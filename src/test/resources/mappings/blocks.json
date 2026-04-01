@@ -3,7 +3,13 @@
     {
       "request": {
         "method": "GET",
-        "url": "/manualblocks?offset=0&query=userId%3Da528d25c-9150-4a7f-906f-d62758059747&limit=10&lang=en"
+        "urlPath": "/manualblocks",
+        "queryParameters": {
+          "offset": { "equalTo": "0" },
+          "query": { "equalTo": "userId=a528d25c-9150-4a7f-906f-d62758059747" },
+          "limit": { "equalTo": "10" },
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,
@@ -16,7 +22,13 @@
     {
       "request": {
         "method": "GET",
-        "url": "/manualblocks?offset=0&query=userId%3D32a3d286-59f6-4594-ae88-588ad8500b6d&limit=10&lang=en"
+        "urlPath": "/manualblocks",
+        "queryParameters": {
+          "offset": { "equalTo": "0" },
+          "query": { "equalTo": "userId=32a3d286-59f6-4594-ae88-588ad8500b6d" },
+          "limit": { "equalTo": "10" },
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,
@@ -29,7 +41,13 @@
     {
       "request": {
         "method": "GET",
-        "url": "/manualblocks?offset=0&query=userId%3D66fe5bd9-1129-4b40-b54d-05b4c358463c&limit=10&lang=en"
+        "urlPath": "/manualblocks",
+        "queryParameters": {
+          "offset": { "equalTo": "0" },
+          "query": { "equalTo": "userId=66fe5bd9-1129-4b40-b54d-05b4c358463c" },
+          "limit": { "equalTo": "10" },
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,

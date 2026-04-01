@@ -4,9 +4,32 @@
       "request": {
         "method": "POST",
         "url": "/users?lang=de",
-        "bodyPatterns" : [ {
-          "equalToJson" : { "customFields" : { }, "proxyFor" : [], "departments" :  []}
-        } ]
+        "bodyPatterns": [
+          {
+            "equalToJson": {
+              "username": null,
+              "id": null,
+              "externalSystemId": null,
+              "barcode": null,
+              "active": null,
+              "blocked": null,
+              "type": null,
+              "patronGroup": null,
+              "patronGroupName": null,
+              "departments": [],
+              "meta": null,
+              "proxyFor": [],
+              "personal": null,
+              "enrollmentDate": null,
+              "expirationDate": null,
+              "createdDate": null,
+              "updatedDate": null,
+              "metadata": null,
+              "tags": null,
+              "customFields": {}
+            }
+          }
+        ]
       },
       "response": {
         "status": 500,

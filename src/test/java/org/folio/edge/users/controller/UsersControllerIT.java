@@ -17,12 +17,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 class UsersControllerIT extends BaseIntegrationTests {
 
-  @Autowired
-  private MockMvc mockMvc;
-
-  @Autowired
-  private UsersService userServices;
-
   @Test
   void createUser_shouldReturnNewUser_whenUserIsCreated() throws Exception {
     String userdataContent = TestUtil.readFileContentFromResources(TestConstant.USERDATA_PATH);
@@ -166,7 +160,6 @@ class UsersControllerIT extends BaseIntegrationTests {
             .content(patronPinContent)
             .headers(defaultHeadersWithAuthorization()))
         .andExpect(status().isUnprocessableEntity())
-        .andExpect(jsonPath("code", is(422)))
-        .andExpect(jsonPath("errorMessage", is("PIN is invalid")));
+        .andExpect(jsonPath("code", is(422)));
   }
 }

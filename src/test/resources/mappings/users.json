@@ -3,7 +3,10 @@
     {
       "request": {
         "method": "POST",
-        "url": "/users?lang=en"
+        "urlPath": "/users",
+        "queryParameters": {
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,
@@ -16,7 +19,13 @@
     {
       "request": {
         "method": "GET",
-        "url": "/users?offset=0&query=username%3Dtest%20or%20personal.email%3Dtest%40mail.com&limit=10&lang=en"
+        "urlPath": "/users",
+        "queryParameters": {
+          "offset": { "equalTo": "0" },
+          "query": { "equalTo": "username=test or personal.email=test@mail.com" },
+          "limit": { "equalTo": "10" },
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,
@@ -29,7 +38,12 @@
     {
       "request": {
         "method": "GET",
-        "url": "/users?offset=0&limit=10&lang=en"
+        "urlPath": "/users",
+        "queryParameters": {
+          "offset": { "equalTo": "0" },
+          "limit": { "equalTo": "10" },
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,
@@ -42,7 +56,13 @@
     {
       "request": {
         "method": "GET",
-        "url": "/users?offset=0&query=username%3Dnouser%20or%20personal.email%3Dtest%40mail.com&limit=10&lang=en"
+        "urlPath": "/users",
+        "queryParameters": {
+          "offset": { "equalTo": "0" },
+          "query": { "equalTo": "username=nouser or personal.email=test@mail.com" },
+          "limit": { "equalTo": "10" },
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,
@@ -55,7 +75,13 @@
     {
       "request": {
         "method": "GET",
-        "url": "/users?offset=0&query=username%3Dseconduser%20or%20personal.email%3Dtest2%40mail.com&limit=10&lang=en"
+        "urlPath": "/users",
+        "queryParameters": {
+          "offset": { "equalTo": "0" },
+          "query": { "equalTo": "username=seconduser or personal.email=test2@mail.com" },
+          "limit": { "equalTo": "10" },
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,
@@ -68,7 +94,13 @@
     {
       "request": {
         "method": "GET",
-        "url": "/users?offset=0&query=username%3Dnouser%20or%20personal.email%3Dnone%40mail.com&limit=10&lang=en"
+        "urlPath": "/users",
+        "queryParameters": {
+          "offset": { "equalTo": "0" },
+          "query": { "equalTo": "username=nouser or personal.email=none@mail.com" },
+          "limit": { "equalTo": "10" },
+          "lang": { "equalTo": "en" }
+        }
       },
       "response": {
         "status": 200,

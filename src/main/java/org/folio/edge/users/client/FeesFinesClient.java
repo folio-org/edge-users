@@ -1,16 +1,15 @@
 package org.folio.edge.users.client;
 
-import org.folio.edge.users.config.FolioClientConfig;
+import java.util.Map;
 import org.folio.users.domain.dto.ManualBlocksResponse;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.cloud.openfeign.SpringQueryMap;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.service.annotation.GetExchange;
+import org.springframework.web.service.annotation.HttpExchange;
 
-
-@FeignClient(name = "folio-feesfines", configuration = FolioClientConfig.class)
+@HttpExchange(contentType = "application/json")
 public interface FeesFinesClient {
 
-  @GetMapping(value = "/manualblocks")
-  ManualBlocksResponse getManualBlocks(@SpringQueryMap Object requestQueryParameters);
+  @GetExchange(value = "manualblocks")
+  ManualBlocksResponse getManualBlocks(@RequestParam Map<String, ?> requestQueryParameters);
 
 }
