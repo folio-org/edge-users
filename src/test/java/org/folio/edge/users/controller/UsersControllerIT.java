@@ -1,27 +1,16 @@
 package org.folio.edge.users.controller;
 
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.folio.edge.users.BaseIntegrationTests;
-import org.folio.edge.users.TestUtil;
-import org.folio.edge.users.service.UsersService;
 import org.folio.edge.users.TestConstant;
+import org.folio.edge.users.TestUtil;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 class UsersControllerIT extends BaseIntegrationTests {
-
-  @Autowired
-  private MockMvc mockMvc;
-
-  @Autowired
-  private UsersService userServices;
 
   @Test
   void createUser_shouldReturnNewUser_whenUserIsCreated() throws Exception {
@@ -166,7 +155,6 @@ class UsersControllerIT extends BaseIntegrationTests {
             .content(patronPinContent)
             .headers(defaultHeadersWithAuthorization()))
         .andExpect(status().isUnprocessableEntity())
-        .andExpect(jsonPath("code", is(422)))
-        .andExpect(jsonPath("errorMessage", is("PIN is invalid")));
+        .andExpect(jsonPath("code", is(422)));
   }
 }

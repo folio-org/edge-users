@@ -7,10 +7,12 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import java.util.Map;
 import org.folio.edge.users.TestUtil;
 import org.folio.edge.users.client.FeesFinesClient;
 import org.folio.edge.users.client.PatronBlocksClient;
-import org.folio.edge.users.client.UsersClient;
+import org.folio.edge.users.client.UserClient;
+import org.folio.edge.users.service.mapper.RequestQueryParametersMapper;
 import org.folio.users.domain.dto.AutomatedPatronBlockResponse;
 import org.folio.users.domain.dto.ManualBlocksResponse;
 import org.folio.users.domain.dto.RequestQueryParameters;
@@ -33,20 +35,26 @@ import org.mockito.quality.Strictness;
 class UsersServiceTest {
 
   private static final String USER_ID = "a528d25c-9150-4a7f-906f-d62758059747";
+
   @InjectMocks
   private UsersService usersService;
   @Mock
-  private UsersClient usersClient;
+  private UserClient userClient;
   @Mock
   private FeesFinesClient feesFinesClient;
   @Mock
   private PatronBlocksClient patronBlocksClient;
+  @Mock
+  private RequestQueryParametersMapper requestQueryParametersMapper;
+  @Mock
+  private Map<String, Object> requestQueryParametersMap;
 
   @BeforeEach
   void setUp() throws JsonProcessingException {
     var manualBlocksContent = TestUtil.readFileContentFromResources(TestConstant.MANUAL_BLOCKS_EMPTY_PATH);
     var manualBlocksResponse = TestUtil.OBJECT_MAPPER.readValue(manualBlocksContent, ManualBlocksResponse.class);
-    when(feesFinesClient.getManualBlocks(any(RequestQueryParameters.class))).thenReturn(manualBlocksResponse);
+    when(requestQueryParametersMapper.toMap(any(RequestQueryParameters.class))).thenReturn(requestQueryParametersMap);
+    when(feesFinesClient.getManualBlocks(requestQueryParametersMap)).thenReturn(manualBlocksResponse);
     var automatedPatronBlocksContent = TestUtil.readFileContentFromResources(
         TestConstant.AUTOMATED_PATRON_BLOCKS_EMPTY_PATH);
     var automatedPatronBlockResponse = TestUtil.OBJECT_MAPPER.readValue(automatedPatronBlocksContent,
@@ -58,7 +66,7 @@ class UsersServiceTest {
   void createUser_shouldCreateUserAndReturnCreatedUser() throws JsonProcessingException {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.USERDATA_PATH);
     var expectedUserdata = TestUtil.OBJECT_MAPPER.readValue(userdataContent, Userdata.class);
-    when(usersClient.createUser(TestConstant.LANG_PARAM_VALID_EN, expectedUserdata)).thenReturn(expectedUserdata);
+    when(userClient.createUser(TestConstant.LANG_PARAM_VALID_EN, expectedUserdata)).thenReturn(expectedUserdata);
 
     var actualUserdata = usersService.createUser(TestConstant.LANG_PARAM_VALID_EN, expectedUserdata);
 
@@ -71,7 +79,7 @@ class UsersServiceTest {
     var userResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
     requestQueryParameters.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(requestQueryParameters)).thenReturn(userResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(userResults);
 
     var exists = usersService.usersExistsByQuery(requestQueryParameters);
 
@@ -84,7 +92,7 @@ class UsersServiceTest {
     var userResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
     requestQueryParameters.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(requestQueryParameters)).thenReturn(userResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(userResults);
 
     var exists = usersService.usersExistsByQuery(requestQueryParameters);
 
@@ -97,7 +105,7 @@ class UsersServiceTest {
     var userResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
     requestQueryParameters.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(requestQueryParameters)).thenReturn(userResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(userResults);
 
     boolean exists = usersService.usersExistsByQuery(requestQueryParameters);
 
@@ -110,10 +118,10 @@ class UsersServiceTest {
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
     requestQueryParameters.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(requestQueryParameters)).thenReturn(expectedUserResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(usersClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(requestQueryParameters);
 
@@ -126,10 +134,10 @@ class UsersServiceTest {
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
     requestQueryParameters.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(requestQueryParameters)).thenReturn(expectedUserResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(usersClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(requestQueryParameters);
 
@@ -142,10 +150,10 @@ class UsersServiceTest {
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
     requestQueryParameters.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(requestQueryParameters)).thenReturn(expectedUserResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(usersClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(requestQueryParameters);
 
@@ -159,12 +167,12 @@ class UsersServiceTest {
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var userRequestParam = new RequestQueryParameters();
     userRequestParam.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(userRequestParam)).thenReturn(expectedUserResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
     var manualBlocksContent = TestUtil.readFileContentFromResources(TestConstant.MANUAL_BLOCKS_PATH);
     var manualBlocksResponse = TestUtil.OBJECT_MAPPER.readValue(manualBlocksContent, ManualBlocksResponse.class);
     var manualBlockRequestParam = new RequestQueryParameters();
     manualBlockRequestParam.setQuery(String.format("userId=%s", USER_ID));
-    when(feesFinesClient.getManualBlocks(manualBlockRequestParam)).thenReturn(manualBlocksResponse);
+    when(feesFinesClient.getManualBlocks(requestQueryParametersMap)).thenReturn(manualBlocksResponse);
     var automatedPatronBlocksContent = TestUtil.readFileContentFromResources(
         TestConstant.AUTOMATED_PATRON_BLOCKS_EMPTY_PATH);
     var automatedPatronBlockResponse = TestUtil.OBJECT_MAPPER.readValue(automatedPatronBlocksContent,
@@ -173,7 +181,7 @@ class UsersServiceTest {
         automatedPatronBlockResponse);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(usersClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(userRequestParam);
 
@@ -186,12 +194,12 @@ class UsersServiceTest {
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var userRequestParam = new RequestQueryParameters();
     userRequestParam.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(userRequestParam)).thenReturn(expectedUserResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
     var manualBlocksContent = TestUtil.readFileContentFromResources(TestConstant.MANUAL_BLOCKS_EMPTY_PATH);
     var manualBlocksResponse = TestUtil.OBJECT_MAPPER.readValue(manualBlocksContent, ManualBlocksResponse.class);
     var manualBlockRequestParam = new RequestQueryParameters();
     manualBlockRequestParam.setQuery(String.format("userId=%s", USER_ID));
-    when(feesFinesClient.getManualBlocks(manualBlockRequestParam)).thenReturn(manualBlocksResponse);
+    when(feesFinesClient.getManualBlocks(requestQueryParametersMap)).thenReturn(manualBlocksResponse);
     var automatedPatronBlocksContent = TestUtil.readFileContentFromResources(TestConstant.AUTOMATED_PATRON_BLOCKS_PATH);
     var automatedPatronBlockResponse = TestUtil.OBJECT_MAPPER.readValue(automatedPatronBlocksContent,
         AutomatedPatronBlockResponse.class);
@@ -199,7 +207,7 @@ class UsersServiceTest {
         automatedPatronBlockResponse);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(usersClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(userRequestParam);
 
@@ -212,7 +220,7 @@ class UsersServiceTest {
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
     requestQueryParameters.setQuery(String.format("username=%s or personal.email=%s", "test", "petra@herzog-group.mu"));
-    when(usersClient.findUsers(requestQueryParameters)).thenReturn(expectedUserResults);
+    when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
 
     var actualUserResults = usersService.getUsers(requestQueryParameters);
 
