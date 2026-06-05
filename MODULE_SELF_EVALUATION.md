@@ -18,7 +18,7 @@
 * [x] Module's repository includes a compliant Module Descriptor
     * -_note: read more at https://github.com/folio-org/okapi/blob/master/okapi-core/src/main/raml/ModuleDescriptor.json_
 * [x] Module includes executable implementations of all endpoints in the provides section of the Module Descriptor
-* [] Environment vars are documented in the ModuleDescriptor
+* [x] Environment vars are documented in the ModuleDescriptor
     * -_note: read more at [https://wiki.folio.org/pages/viewpage.action?pageId=65110683](https://wiki.folio.org/pages/viewpage.action?pageId=65110683)_
 * [x] If a module provides interfaces intended to be consumed by other FOLIO Modules, they must be defined in the Module Descriptor "provides" section
 * [x] All API endpoints are documented in RAML or OpenAPI
@@ -40,4 +40,3 @@
         * Services are stateful
 * [x] Module only uses infrastructure / platform technologies on the [officially approved technologies](https://wiki.folio.org/display/TC/Officially+Supported+Technologies) list.
     * _e.g. PostgreSQL, ElasticSearch, etc._
-

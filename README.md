@@ -22,6 +22,7 @@ Institutional users should be granted the following permission in order to use t
 ## Configuration
 
 * See [edge-common](https://github.com/folio-org/edge-common) for a description of how configuration works.
+* See [ENV_VARS.md](ENV_VARS.md) for the environment variables declared by this module.
 
 ### TLS Configuration for HTTP Endpoints
 
