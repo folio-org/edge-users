@@ -132,3 +132,17 @@ FOLIO_CLIENT_TLS_TRUSTSTOREPATH=classpath:test/test.truststore.bcfks
 FOLIO_CLIENT_TLS_TRUSTSTOREPASSWORD=SecretPassword
 FOLIO_CLIENT_TLS_TRUSTSTORETYPE=bcfks
 ```
+
+## ASF Category B license notice
+
+Apache's [third-party license policy](https://www.apache.org/legal/resolved.html#category-b) allows Category B dependencies
+only under the conditions described there. The dependency license scan for this project reported the following dependencies
+whose detected licenses match ASF Category B license families:
+
+| Project | Detected dependency or dependencies | Detected license | Project URL |
+|---|---|---|---|
+| Jakarta Activation | `jakarta.activation:jakarta.activation-api:2.1.4` | EPL-1.0 | https://jakarta.ee/specifications/activation/ |
+| Jakarta XML Binding | `jakarta.xml.bind:jakarta.xml.bind-api:4.0.4` | EPL-1.0 | https://jakarta.ee/specifications/xml-binding/ |
+| Eclipse Sisu | `org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M2` | Eclipse Public License 1.0 | https://www.eclipse.org/sisu/ |
+| JUnit 6 | `org.junit.jupiter:junit-jupiter-api:6.0.3`, `org.junit.jupiter:junit-jupiter-engine:6.0.3`, `org.junit.jupiter:junit-jupiter-params:6.0.3`, `org.junit.platform:junit-platform-commons:6.0.3`, `org.junit.platform:junit-platform-engine:6.0.3` | EPL-2.0 | https://junit.org/junit5/ |
+| Mozilla Rhino | `org.mozilla:rhino:1.9.1` | Mozilla Public License 2.0 | https://github.com/mozilla/rhino |
