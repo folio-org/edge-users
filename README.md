@@ -141,8 +141,8 @@ whose detected licenses match ASF Category B license families:
 
 | Project | Detected dependency or dependencies | Detected license | Project URL |
 |---|---|---|---|
-| Jakarta Activation | `jakarta.activation:jakarta.activation-api:2.1.4` | EPL-1.0 | https://jakarta.ee/specifications/activation/ |
-| Jakarta XML Binding | `jakarta.xml.bind:jakarta.xml.bind-api:4.0.4` | EPL-1.0 | https://jakarta.ee/specifications/xml-binding/ |
-| Eclipse Sisu | `org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M2` | Eclipse Public License 1.0 | https://www.eclipse.org/sisu/ |
-| JUnit 6 | `org.junit.jupiter:junit-jupiter-api:6.0.3`, `org.junit.jupiter:junit-jupiter-engine:6.0.3`, `org.junit.jupiter:junit-jupiter-params:6.0.3`, `org.junit.platform:junit-platform-commons:6.0.3`, `org.junit.platform:junit-platform-engine:6.0.3` | EPL-2.0 | https://junit.org/junit5/ |
-| Mozilla Rhino | `org.mozilla:rhino:1.9.1` | Mozilla Public License 2.0 | https://github.com/mozilla/rhino |
+| Jakarta Annotations API | `jakarta.annotation:jakarta.annotation-api:3.0.0` | EPL 2.0; GPL2 w/ CPE | https://projects.eclipse.org/projects/ee4j.ca |
+| Java Architecture for XML Binding | `javax.xml.bind:jaxb-api:2.3.1` | CDDL 1.1; GPL2 w/ CPE | https://github.com/javaee/jaxb-spec |
+| Eclipse Sisu | `org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M2` | Eclipse Public License, Version 1.0 | https://www.eclipse.org/sisu/ |
+| JUnit 6 | `org.junit.jupiter:junit-jupiter:6.0.3`, `org.junit.jupiter:junit-jupiter-api:6.0.3`, `org.junit.jupiter:junit-jupiter-engine:6.0.3`, `org.junit.jupiter:junit-jupiter-params:6.0.3`, `org.junit.platform:junit-platform-commons:6.0.3`, `org.junit.platform:junit-platform-engine:6.0.3` | Eclipse Public License v2.0 | https://junit.org/junit5/ |
+| Mozilla Rhino | `org.mozilla:rhino:1.9.1` | Mozilla Public License, Version 2.0 | https://github.com/mozilla/rhino |
