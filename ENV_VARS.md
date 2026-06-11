@@ -8,7 +8,7 @@ Generic Spring Boot environment variables are supported by the framework and are
 | `JAVA_OPTIONS` | `-XX:MaxRAMPercentage=66.0` | false | Java runtime options for the module container. |
 | `SERVER_PORT` | `8080` | false | HTTP port used by the embedded Spring Boot server. |
 | `FOLIO_ENVIRONMENT` | `dev` | false | FOLIO environment name used by folio-spring-system-user configuration. |
-| `FOLIO_CLIENT_OKAPIURL` | `http://localhost:9130` | false | Okapi base URL used for outbound FOLIO service calls. |
+| `FOLIO_CLIENT_OKAPIURL` |  | true | Okapi base URL used for outbound FOLIO service calls. This must be set to the reachable Okapi URL for the deployment environment. |
 | `FOLIO_CLIENT_TLS_ENABLED` | `false` | false | Enables custom TLS truststore configuration for outbound Okapi/client calls. |
 | `FOLIO_CLIENT_TLS_TRUSTSTOREPATH` |  | false | Path to the outbound client TLS truststore. Required only when `FOLIO_CLIENT_TLS_ENABLED` is true and the server certificate is not trusted by the default JVM truststore. |
 | `FOLIO_CLIENT_TLS_TRUSTSTOREPASSWORD` |  | false | Password for the outbound client TLS truststore. |

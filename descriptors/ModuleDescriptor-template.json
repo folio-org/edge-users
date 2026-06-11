@@ -45,9 +45,9 @@
     },
     {
       "name": "FOLIO_CLIENT_OKAPIURL",
-      "value": "http://localhost:9130",
-      "description": "Okapi base URL used for outbound FOLIO service calls.",
-      "required": false
+      "value": "",
+      "description": "Okapi base URL used for outbound FOLIO service calls. This must be set to the reachable Okapi URL for the deployment environment.",
+      "required": true
     },
     {
       "name": "FOLIO_CLIENT_TLS_ENABLED",
