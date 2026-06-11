@@ -238,7 +238,9 @@
               <generateSupportingFiles>true</generateSupportingFiles>
               <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
               <generateModelDocumentation>true</generateModelDocumentation>
-              <inlineSchemaNameDefaults>arrayItemSuffix=</inlineSchemaNameDefaults>
+              <inlineSchemaOptions>
+                <inlineSchemaOption>ARRAY_ITEM_SUFFIX=_inner</inlineSchemaOption>
+              </inlineSchemaOptions>
               <configOptions>
                 <java8>true</java8>
                 <dateLibrary>java</dateLibrary>

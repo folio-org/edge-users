@@ -12,7 +12,7 @@
 * [x] Module gracefully handles the absence of third party systems or related configuration
 * [] Sonarqube hasn't identified any security issues, major code smells or excessive (>3%) duplication
 * [x] Uses [officially supported](https://wiki.folio.org/display/TC/Officially+Supported+Technologies) build tools
-* [] Unit tests have 80% coverage or greater, and are based on [officially approved technologies](https://wiki.folio.org/display/TC/Officially+Supported+Technologies)
+* [x] Unit tests have 80% coverage or greater, and are based on [officially approved technologies](https://wiki.folio.org/display/TC/Officially+Supported+Technologies)
 
 ## Backend
 * [x] Module's repository includes a compliant Module Descriptor
