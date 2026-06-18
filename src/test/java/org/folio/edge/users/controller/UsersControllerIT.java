@@ -154,7 +154,7 @@ class UsersControllerIT extends BaseIntegrationTests {
     mockMvc.perform(MockMvcRequestBuilders.post(TestConstant.PATRON_PIN_VERIFY_URI)
             .content(patronPinContent)
             .headers(defaultHeadersWithAuthorization()))
-        .andExpect(status().isUnprocessableEntity())
+        .andExpect(status().isUnprocessableContent())
         .andExpect(jsonPath("code", is(422)));
   }
 }

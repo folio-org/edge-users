@@ -47,6 +47,8 @@ class UsersServiceTest {
   @Mock
   private RequestQueryParametersMapper requestQueryParametersMapper;
   @Mock
+  private UserGroupService userGroupService;
+  @Mock
   private Map<String, Object> requestQueryParametersMap;
 
   @BeforeEach
@@ -121,7 +123,7 @@ class UsersServiceTest {
     when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userGroupService.getUserGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(requestQueryParameters);
 
@@ -137,7 +139,7 @@ class UsersServiceTest {
     when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userGroupService.getUserGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(requestQueryParameters);
 
@@ -153,7 +155,7 @@ class UsersServiceTest {
     when(userClient.findUsers(requestQueryParametersMap)).thenReturn(expectedUserResults);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userGroupService.getUserGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(requestQueryParameters);
 
@@ -181,7 +183,7 @@ class UsersServiceTest {
         automatedPatronBlockResponse);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userGroupService.getUserGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(userRequestParam);
 
@@ -207,7 +209,7 @@ class UsersServiceTest {
         automatedPatronBlockResponse);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
     var expectedUserGroup = TestUtil.OBJECT_MAPPER.readValue(usergroupContent, UserGroup.class);
-    when(userClient.getGroupById(anyString())).thenReturn(expectedUserGroup);
+    when(userGroupService.getUserGroupById(anyString())).thenReturn(expectedUserGroup);
 
     var actualUserResults = usersService.getUsers(userRequestParam);
 

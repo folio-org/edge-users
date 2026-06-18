@@ -16,12 +16,13 @@ See [edge-common-spring](https://github.com/folio-org/edge-common-spring)
 ## Requires Permissions
 
 Institutional users should be granted the following permission in order to use this edge API:
-- `"users.collection.get"`
-- `""users.item.post""`
+- `users.collection.get`
+- `users.item.post`
 
 ## Configuration
 
 * See [edge-common](https://github.com/folio-org/edge-common) for a description of how configuration works.
+* See [ENV_VARS.md](ENV_VARS.md) for the environment variables declared by this module.
 
 ### TLS Configuration for HTTP Endpoints
 
@@ -131,3 +132,17 @@ FOLIO_CLIENT_TLS_TRUSTSTOREPATH=classpath:test/test.truststore.bcfks
 FOLIO_CLIENT_TLS_TRUSTSTOREPASSWORD=SecretPassword
 FOLIO_CLIENT_TLS_TRUSTSTORETYPE=bcfks
 ```
+
+## ASF Category B license notice
+
+Apache's [third-party license policy](https://www.apache.org/legal/resolved.html#category-b) allows Category B dependencies
+only under the conditions described there. The dependency license scan for this project reported the following dependencies
+whose detected licenses match ASF Category B license families:
+
+| Project | Detected dependency or dependencies | Detected license | Project URL |
+|---|---|---|---|
+| Jakarta Annotations API | `jakarta.annotation:jakarta.annotation-api:3.0.0` | EPL 2.0; GPL2 w/ CPE | https://projects.eclipse.org/projects/ee4j.ca |
+| Java Architecture for XML Binding | `javax.xml.bind:jaxb-api:2.3.1` | CDDL 1.1; GPL2 w/ CPE | https://github.com/javaee/jaxb-spec |
+| Eclipse Sisu | `org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M2` | Eclipse Public License, Version 1.0 | https://www.eclipse.org/sisu/ |
+| JUnit 6 | `org.junit.jupiter:junit-jupiter:6.0.3`, `org.junit.jupiter:junit-jupiter-api:6.0.3`, `org.junit.jupiter:junit-jupiter-engine:6.0.3`, `org.junit.jupiter:junit-jupiter-params:6.0.3`, `org.junit.platform:junit-platform-commons:6.0.3`, `org.junit.platform:junit-platform-engine:6.0.3` | Eclipse Public License v2.0 | https://junit.org/junit5/ |
+| Mozilla Rhino | `org.mozilla:rhino:1.9.1` | Mozilla Public License, Version 2.0 | https://github.com/mozilla/rhino |

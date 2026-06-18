@@ -25,6 +25,9 @@
 
     <!-- Test dependencies versions -->
     <wiremock-standalone.version>3.13.2</wiremock-standalone.version>
+
+    <!-- Downgrade Liquibase to 4.33.0 to avoid FSL license in v5. This is the TC recommendation for new modules. -->
+    <liquibase.version>4.33.0</liquibase.version>
   </properties>
 
   <dependencies>
@@ -235,7 +238,9 @@
               <generateSupportingFiles>true</generateSupportingFiles>
               <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
               <generateModelDocumentation>true</generateModelDocumentation>
-              <inlineSchemaNameDefaults>arrayItemSuffix=</inlineSchemaNameDefaults>
+              <inlineSchemaOptions>
+                <inlineSchemaOption>ARRAY_ITEM_SUFFIX=_inner</inlineSchemaOption>
+              </inlineSchemaOptions>
               <configOptions>
                 <java8>true</java8>
                 <dateLibrary>java</dateLibrary>

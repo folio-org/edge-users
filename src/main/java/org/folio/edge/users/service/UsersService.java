@@ -8,14 +8,12 @@ import org.folio.users.domain.dto.AutomatedPatronBlock;
 import org.folio.users.domain.dto.ManualBlock;
 import org.folio.users.domain.dto.PatronPinWithId;
 import org.folio.users.domain.dto.RequestQueryParameters;
-import org.folio.users.domain.dto.UserGroup;
 import org.folio.users.domain.dto.UserResults;
 import org.folio.users.domain.dto.Userdata;
 import java.util.Objects;
 import java.util.function.Predicate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,6 +32,7 @@ public class UsersService {
   private final FeesFinesClient feesFinesClient;
   private final PatronBlocksClient patronBlocksClient;
   private final RequestQueryParametersMapper requestQueryParametersMapper;
+  private final UserGroupService userGroupService;
 
   public Userdata createUser(String lang, Userdata userdata) {
     return userClient.createUser(lang, userdata);
@@ -57,12 +56,6 @@ public class UsersService {
     return populateUserGroupName(userResults);
   }
 
-  @Cacheable(value = "usergroup_cache", key = "{ #groupId }")
-  public UserGroup getUserGroupById(final String groupId) {
-    log.debug("Get user group by id '{}'", groupId);
-    return userClient.getGroupById(groupId);
-  }
-
   private void populateBlockedAttribute(UserResults userResults) {
     userResults.getUsers().forEach(userdata -> {
       String userId = userdata.getId();
@@ -79,7 +72,7 @@ public class UsersService {
     userResults.getUsers().stream()
       .filter(userdata -> Objects.nonNull(userdata.getPatronGroup()))
       .forEach(userdata -> {
-        final UserGroup userGroup = getUserGroupById(userdata.getPatronGroup());
+        final var userGroup = userGroupService.getUserGroupById(userdata.getPatronGroup());
         log.debug("Retrieved user group by id '{}': '{}'", userdata.getPatronGroup(), userGroup);
         userdata.setPatronGroupName(userGroup.getGroup());
       });

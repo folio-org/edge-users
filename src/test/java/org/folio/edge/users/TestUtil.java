@@ -14,7 +14,7 @@ import org.apache.commons.io.IOUtils;
 public class TestUtil {
 
   public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
-      .setSerializationInclusion(Include.NON_NULL)
+      .setDefaultPropertyInclusion(Include.NON_NULL)
       .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
       .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
       .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);

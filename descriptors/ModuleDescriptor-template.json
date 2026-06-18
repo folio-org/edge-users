@@ -23,5 +23,97 @@
         "value": "-XX:MaxRAMPercentage=66.0"
       }
     ]
-  }
+  },
+  "env": [
+    {
+      "name": "JAVA_OPTIONS",
+      "value": "-XX:MaxRAMPercentage=66.0",
+      "description": "Java runtime options for the module container.",
+      "required": false
+    },
+    {
+      "name": "SERVER_PORT",
+      "value": "8080",
+      "description": "HTTP port used by the embedded Spring Boot server.",
+      "required": false
+    },
+    {
+      "name": "FOLIO_ENVIRONMENT",
+      "value": "dev",
+      "description": "FOLIO environment name used by folio-spring-system-user configuration.",
+      "required": false
+    },
+    {
+      "name": "FOLIO_CLIENT_OKAPIURL",
+      "value": "",
+      "description": "Okapi base URL used for outbound FOLIO service calls. This must be set to the reachable Okapi URL for the deployment environment.",
+      "required": true
+    },
+    {
+      "name": "FOLIO_CLIENT_TLS_ENABLED",
+      "value": "false",
+      "description": "Enables custom TLS truststore configuration for outbound Okapi/client calls.",
+      "required": false
+    },
+    {
+      "name": "FOLIO_CLIENT_TLS_TRUSTSTOREPATH",
+      "value": "",
+      "description": "Path to the outbound client TLS truststore. Required only when FOLIO_CLIENT_TLS_ENABLED is true and the server certificate is not trusted by the default JVM truststore.",
+      "required": false
+    },
+    {
+      "name": "FOLIO_CLIENT_TLS_TRUSTSTOREPASSWORD",
+      "value": "",
+      "description": "Password for the outbound client TLS truststore.",
+      "required": false
+    },
+    {
+      "name": "FOLIO_CLIENT_TLS_TRUSTSTORETYPE",
+      "value": "",
+      "description": "Type of the outbound client TLS truststore, for example JKS, PKCS12, or BCFKS. If unset, the JVM default truststore type is used.",
+      "required": false
+    },
+    {
+      "name": "SECURE_STORE_PROPS",
+      "value": "src/main/resources/ephemeral.properties",
+      "description": "Path or URL to the edge secure-store properties file used to configure the secure store for institutional user credentials.",
+      "required": false
+    },
+    {
+      "name": "API_KEY_SOURCES",
+      "value": "PARAM,HEADER,PATH",
+      "description": "Comma-separated list of locations where the edge API key is accepted. Valid values are PARAM, HEADER, and PATH.",
+      "required": false
+    },
+    {
+      "name": "TOKEN_CACHE_TTL_MS",
+      "value": "3600000",
+      "description": "Time to live, in milliseconds, for successful Okapi token cache entries.",
+      "required": false
+    },
+    {
+      "name": "NULL_TOKEN_CACHE_TTL_MS",
+      "value": "30000",
+      "description": "Time to live, in milliseconds, for failed or null Okapi token cache entries.",
+      "required": false
+    },
+    {
+      "name": "TOKEN_CACHE_CAPACITY",
+      "value": "100",
+      "description": "Maximum number of Okapi token entries held by the in-memory edge token cache.",
+      "required": false
+    },
+    {
+      "name": "EDGE_SECURITY_FILTER_ENABLED",
+      "value": "true",
+      "description": "Enables the edge API key security filter.",
+      "required": false
+    },
+    {
+      "name": "HEADER_EDGE_VALIDATION_EXCLUDE",
+      "value": "/admin/health,/admin/info,/swagger-resources,/v2/api-docs,/swagger-ui,/_/tenant",
+      "description": "Comma-separated list of request path prefixes excluded from edge API key validation.",
+      "required": false
+    }
+  ]
 }
