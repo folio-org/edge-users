@@ -76,7 +76,7 @@
     {
       "name": "SECURE_STORE_PROPS",
       "value": "src/main/resources/ephemeral.properties",
-      "description": "Path or URL to the edge secure-store properties file used to configure the secure store for institutional user credentials.",
+      "description": "Path or URL to the edge secure-store properties file used to configure the secure store for institutional user credentials. In the FOLIO container image this relative default resolves from /usr/verticles, so operators using the default must mount the file at /usr/verticles/src/main/resources/ephemeral.properties, or set SECURE_STORE_PROPS to another absolute path or URL.",
       "required": false
     },
     {

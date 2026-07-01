@@ -16,6 +16,14 @@
   <description>Provides an ability to retrieve and create users information from FOLIO</description>
   <packaging>jar</packaging>
 
+  <licenses>
+    <license>
+      <name>Apache-2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
   <properties>
     <java.version>21</java.version>
     <edge-common-spring.version>4.0.0</edge-common-spring.version>
