@@ -64,7 +64,7 @@ public class UsersService {
         isUserBlocked = hasUserAutomatedBlocks(userId);
       }
       userdata.blocked(isUserBlocked);
-      log.info("User with id {} has blocked status: {}", userId, isUserBlocked);
+      log.debug("User with id {} has blocked status: {}", userId, isUserBlocked);
     });
   }
 
