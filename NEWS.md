@@ -1,3 +1,8 @@
+## v2.2.1 2026-07-24
+
+* [EDGEUSERS-4](https://folio-org.atlassian.net/browse/EDGEUSERS-4) - Investigate PII data in Sensitive data in logs cleanup
+* [EDGEUSERS-24](https://folio-org.atlassian.net/browse/EDGEUSERS-24) - Upgrade edge-common-spring in edge-users
+
 ## v2.2.0 2026-04-17
 
 * [EDGEUSERS-13](https://folio-org.atlassian.net/browse/EDGEUSERS-13) - Use GitHub Workflows for Maven
