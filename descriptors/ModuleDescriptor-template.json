@@ -6,6 +6,18 @@
     {
       "id": "users",
       "version": "16.4"
+    },
+    {
+      "id": "patron-pin",
+      "version": "1.0"
+    },
+    {
+      "id": "feesfines",
+      "version": "19.1"
+    },
+    {
+      "id": "automated-patron-blocks",
+      "version": "0.1"
     }
   ],
   "permissionSets": [],
@@ -45,9 +57,9 @@
     },
     {
       "name": "FOLIO_CLIENT_OKAPIURL",
-      "value": "",
+      "value": "https://localhost:9130",
       "description": "Okapi base URL used for outbound FOLIO service calls. This must be set to the reachable Okapi URL for the deployment environment.",
-      "required": true
+      "required": false
     },
     {
       "name": "FOLIO_CLIENT_TLS_ENABLED",
@@ -76,7 +88,7 @@
     {
       "name": "SECURE_STORE_PROPS",
       "value": "src/main/resources/ephemeral.properties",
-      "description": "Path or URL to the edge secure-store properties file used to configure the secure store for institutional user credentials.",
+      "description": "Path or URL to the edge secure-store properties file used to configure the secure store for institutional user credentials. In the FOLIO container image this relative default resolves from /usr/verticles, so operators using the default must mount the file at /usr/verticles/src/main/resources/ephemeral.properties, or set SECURE_STORE_PROPS to another absolute path or URL.",
       "required": false
     },
     {

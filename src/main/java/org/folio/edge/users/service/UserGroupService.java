@@ -14,7 +14,7 @@ public class UserGroupService {
 
   private final UserClient userClient;
 
-  @Cacheable(value = "usergroup_cache", key = "{ #groupId }")
+  @Cacheable(value = "usergroup_cache", key = "{ @folioExecutionContext.getTenantId(), #groupId }")
   public UserGroup getUserGroupById(final String groupId) {
     log.debug("Get user group by id '{}'", groupId);
     return userClient.getGroupById(groupId);
