@@ -1,3 +1,7 @@
+## WIP
+
+* [FOLIO-4553](https://folio-org.atlassian.net/browse/FOLIO-4553) - Set "permissions: contents: read" in maven.yml
+
 ## v2.2.0 2026-04-17
 
 * [EDGEUSERS-13](https://folio-org.atlassian.net/browse/EDGEUSERS-13) - Use GitHub Workflows for Maven
