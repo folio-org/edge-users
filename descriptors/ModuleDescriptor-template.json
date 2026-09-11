@@ -10,7 +10,9 @@
     {
       "id": "patron-pin",
       "version": "1.0"
-    },
+    }
+  ],
+  "optional":[
     {
       "id": "feesfines",
       "version": "19.1"
