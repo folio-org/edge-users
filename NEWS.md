@@ -1,5 +1,6 @@
 ## WIP
 
+* [EDGEUSERS-31](https://folio-org.atlassian.net/browse/EDGEUSERS-31) - Add DeployConfig.json to edge-users (ADR-0013 Configuration Management)
 * [FOLIO-4553](https://folio-org.atlassian.net/browse/FOLIO-4553) - Set "permissions: contents: read" in maven.yml
 
 ## v2.2.0 2026-04-17
