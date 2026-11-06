@@ -13,13 +13,12 @@ import org.folio.edge.users.client.FeesFinesClient;
 import org.folio.edge.users.client.PatronBlocksClient;
 import org.folio.edge.users.client.UserClient;
 import org.folio.edge.users.service.mapper.RequestQueryParametersMapper;
-import org.folio.users.domain.dto.AutomatedPatronBlockResponse;
+import org.folio.users.domain.dto.AutomatedPatronBlocksResponse;
 import org.folio.users.domain.dto.ManualBlocksResponse;
 import org.folio.users.domain.dto.RequestQueryParameters;
 import org.folio.users.domain.dto.UserGroup;
 import org.folio.users.domain.dto.UserResults;
 import org.folio.users.domain.dto.Userdata;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.folio.edge.users.TestConstant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +51,7 @@ class UsersServiceTest {
   private Map<String, Object> requestQueryParametersMap;
 
   @BeforeEach
-  void setUp() throws JsonProcessingException {
+  void setUp() {
     var manualBlocksContent = TestUtil.readFileContentFromResources(TestConstant.MANUAL_BLOCKS_EMPTY_PATH);
     var manualBlocksResponse = TestUtil.OBJECT_MAPPER.readValue(manualBlocksContent, ManualBlocksResponse.class);
     when(requestQueryParametersMapper.toMap(any(RequestQueryParameters.class))).thenReturn(requestQueryParametersMap);
@@ -60,12 +59,12 @@ class UsersServiceTest {
     var automatedPatronBlocksContent = TestUtil.readFileContentFromResources(
         TestConstant.AUTOMATED_PATRON_BLOCKS_EMPTY_PATH);
     var automatedPatronBlockResponse = TestUtil.OBJECT_MAPPER.readValue(automatedPatronBlocksContent,
-        AutomatedPatronBlockResponse.class);
+        AutomatedPatronBlocksResponse.class);
     when(patronBlocksClient.getAutomatedPatronBlocks(anyString())).thenReturn(automatedPatronBlockResponse);
   }
 
   @Test
-  void createUser_shouldCreateUserAndReturnCreatedUser() throws JsonProcessingException {
+  void createUser_shouldCreateUserAndReturnCreatedUser() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.USERDATA_PATH);
     var expectedUserdata = TestUtil.OBJECT_MAPPER.readValue(userdataContent, Userdata.class);
     when(userClient.createUser(TestConstant.LANG_PARAM_VALID_EN, expectedUserdata)).thenReturn(expectedUserdata);
@@ -76,7 +75,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void usersExistsByQuery_shouldReturnTrueFor2Users() throws JsonProcessingException {
+  void usersExistsByQuery_shouldReturnTrueFor2Users() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.BOTH_USER_COLLECTION_PATH);
     var userResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
@@ -89,7 +88,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void usersExistsByQuery_shouldReturnTrueFor1User() throws JsonProcessingException {
+  void usersExistsByQuery_shouldReturnTrueFor1User() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.ONEOF_USER_COLLECTION_PATH);
     var userResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
@@ -102,7 +101,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void usersExistsByQuery_shouldReturnFalseForNoUsers() throws JsonProcessingException {
+  void usersExistsByQuery_shouldReturnFalseForNoUsers() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.EMPTY_USER_COLLECTION_PATH);
     var userResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
@@ -115,7 +114,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void getUsers_shouldReturnAllUsers() throws JsonProcessingException {
+  void getUsers_shouldReturnAllUsers() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.BOTH_USER_COLLECTION_PATH);
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
@@ -131,7 +130,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void getUsers_shouldReturnUser1forBothUsersCollection() throws JsonProcessingException {
+  void getUsers_shouldReturnUser1forBothUsersCollection() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.ONEOF_USER_COLLECTION_PATH);
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
@@ -147,7 +146,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void getUsers_shouldReturnNotBlockedUser() throws JsonProcessingException {
+  void getUsers_shouldReturnNotBlockedUser() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.ONEOF_USER_COLLECTION_PATH);
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
@@ -164,7 +163,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void getUsers_shouldReturnBlockedUser_whenManualBlocksPresent() throws JsonProcessingException {
+  void getUsers_shouldReturnBlockedUser_whenManualBlocksPresent() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.ONEOF_USER_COLLECTION_PATH);
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var userRequestParam = new RequestQueryParameters();
@@ -178,7 +177,7 @@ class UsersServiceTest {
     var automatedPatronBlocksContent = TestUtil.readFileContentFromResources(
         TestConstant.AUTOMATED_PATRON_BLOCKS_EMPTY_PATH);
     var automatedPatronBlockResponse = TestUtil.OBJECT_MAPPER.readValue(automatedPatronBlocksContent,
-        AutomatedPatronBlockResponse.class);
+        AutomatedPatronBlocksResponse.class);
     when(patronBlocksClient.getAutomatedPatronBlocks(USER_ID)).thenReturn(
         automatedPatronBlockResponse);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
@@ -191,7 +190,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void getUsers_shouldReturnBlockedUser_whenAutomatedPatronBlocksPresent() throws JsonProcessingException {
+  void getUsers_shouldReturnBlockedUser_whenAutomatedPatronBlocksPresent() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.ONEOF_USER_COLLECTION_PATH);
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var userRequestParam = new RequestQueryParameters();
@@ -204,7 +203,7 @@ class UsersServiceTest {
     when(feesFinesClient.getManualBlocks(requestQueryParametersMap)).thenReturn(manualBlocksResponse);
     var automatedPatronBlocksContent = TestUtil.readFileContentFromResources(TestConstant.AUTOMATED_PATRON_BLOCKS_PATH);
     var automatedPatronBlockResponse = TestUtil.OBJECT_MAPPER.readValue(automatedPatronBlocksContent,
-        AutomatedPatronBlockResponse.class);
+        AutomatedPatronBlocksResponse.class);
     when(patronBlocksClient.getAutomatedPatronBlocks(USER_ID)).thenReturn(
         automatedPatronBlockResponse);
     var usergroupContent = TestUtil.readFileContentFromResources(TestConstant.USERGROUP_PATH);
@@ -217,7 +216,7 @@ class UsersServiceTest {
   }
 
   @Test
-  void getUsers_shouldReturnEmpty() throws JsonProcessingException {
+  void getUsers_shouldReturnEmpty() {
     var userdataContent = TestUtil.readFileContentFromResources(TestConstant.EMPTY_USER_COLLECTION_PATH);
     var expectedUserResults = TestUtil.OBJECT_MAPPER.readValue(userdataContent, UserResults.class);
     var requestQueryParameters = new RequestQueryParameters();
