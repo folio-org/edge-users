@@ -1,3 +1,7 @@
+## v2.2.2 2026-11-09
+
+* [EDGEUSERS-30](https://folio-org.atlassian.net/browse/EDGEUSERS-30) - Upgrade module to Spring Boot 4.1.1
+
 ## v2.2.1 2026-07-24
 
 * [EDGEUSERS-4](https://folio-org.atlassian.net/browse/EDGEUSERS-4) - Investigate PII data in Sensitive data in logs cleanup
