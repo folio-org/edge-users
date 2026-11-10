@@ -6,14 +6,14 @@ import org.folio.users.domain.dto.RequestQueryParameters;
 import org.folio.users.domain.dto.UserResults;
 import org.folio.users.domain.dto.Userdata;
 import org.folio.users.rest.resource.UsersApi;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags = "Edge users")
+@Tag(name = "Edge users")
 @Log4j2
 @RequiredArgsConstructor
 @RestController
