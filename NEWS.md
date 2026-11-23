@@ -1,3 +1,7 @@
+## v2.2.3 2026-11-23
+
+* [EDGEUSERS-31](https://folio-org.atlassian.net/browse/EDGEUSERS-31) - Add DeployConfig.json to edge-users (ADR-0013 Configuration Management)
+
 ## v2.2.2 2026-11-09
 
 * [EDGEUSERS-30](https://folio-org.atlassian.net/browse/EDGEUSERS-30) - Upgrade module to Spring Boot 4.1.1
